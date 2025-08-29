@@ -1,0 +1,54 @@
+{
+  "name": "FELIPE - Asistente Legal IA",
+  "short_name": "FELIPE",
+  "description": "Asistente de IA especializado para fiscales y profesionales del derecho en Colombia",
+  "theme_color": "#0ea5e9",
+  "background_color": "#0f172a",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "start_url": "/",
+  "categories": ["productivity", "business", "utilities"],
+  "lang": "es-CO",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "pwa-64x64.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    },
+    {
+      "src": "pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "apple touch icon"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Nuevo Caso",
+      "short_name": "Caso",
+      "description": "Crear un nuevo caso fiscal",
+      "url": "/?action=new-case",
+      "icons": [{ "src": "pwa-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Chat IA",
+      "short_name": "IA",
+      "description": "Consultar con el asistente IA",
+      "url": "/?action=ai-chat",
+      "icons": [{ "src": "pwa-192x192.png", "sizes": "192x192" }]
+    }
+  ]
+}
