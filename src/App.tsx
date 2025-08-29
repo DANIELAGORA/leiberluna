@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { Scale } from 'lucide-react';
 import { AuthProvider, useAuthContext } from './components/auth/AuthProvider';
@@ -68,36 +67,24 @@ const AppContent: React.FC = () => {
   };
 
   return (
-    <Router>
-      <div className="flex h-screen bg-gray-50">
-        <Sidebar 
-          isOpen={sidebarOpen} 
-          currentPage={currentPage} 
-          onPageChange={setCurrentPage}
+    <div className="flex h-screen bg-gray-50">
+      <Sidebar 
+        isOpen={sidebarOpen} 
+        currentPage={currentPage} 
+        onPageChange={setCurrentPage}
+      />
+      
+      <div className={`flex-1 flex flex-col transition-all duration-300 ${sidebarOpen ? 'ml-64' : 'ml-16'}`}>
+        <Header 
+          onToggleSidebar={() => setSidebarOpen(!sidebarOpen)} 
+          sidebarOpen={sidebarOpen}
         />
         
-        <div className={`flex-1 flex flex-col transition-all duration-300 ${sidebarOpen ? 'ml-64' : 'ml-16'}`}>
-          <Header 
-            onToggleSidebar={() => setSidebarOpen(!sidebarOpen)} 
-            sidebarOpen={sidebarOpen}
-          />
-          
-          <main className="flex-1 overflow-auto p-6">
-            <Routes>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/cases" element={<CaseManagement />} />
-              <Route path="/cases/:id" element={<CaseManagement />} />
-              <Route path="/ai-chat" element={<AIChat />} />
-              <Route path="/documents" element={<DocumentAnalyzer />} />
-              <Route path="/calendar" element={<Calendar />} />
-              <Route path="/calendar/:id" element={<Calendar />} />
-              <Route path="/reports" element={<Reports />} />
-              <Route path="/settings" element={<Settings />} />
-            </Routes>
-          </main>
-        </div>
+        <main className="flex-1 overflow-auto p-6">
+          {renderPage()}
+        </main>
       </div>
-    </Router>
+    </div>
   );
 };
 
