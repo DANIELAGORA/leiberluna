@@ -1,8 +1,4 @@
 import React, { useState } from 'react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { Toaster } from 'react-hot-toast';
-import { AuthProvider, useAuthContext } from './components/auth/AuthProvider';
-import { LoginForm } from './components/auth/LoginForm';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import Dashboard from './components/Dashboard';
@@ -13,36 +9,9 @@ import Calendar from './components/Calendar';
 import Reports from './components/Reports';
 import Settings from './components/Settings';
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 5 * 60 * 1000, // 5 minutos
-      cacheTime: 10 * 60 * 1000, // 10 minutos
-    },
-  },
-});
-
-const AppContent: React.FC = () => {
-  const { user, loading } = useAuthContext();
+function App() {
   const [currentPage, setCurrentPage] = useState('dashboard');
   const [sidebarOpen, setSidebarOpen] = useState(true);
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="bg-sky-500 p-4 rounded-full w-16 h-16 mx-auto mb-4 animate-pulse">
-            <Scale className="w-8 h-8 text-white" />
-          </div>
-          <p className="text-gray-600">Cargando FELIPE...</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (!user) {
-    return <LoginForm />;
-  }
 
   const renderPage = () => {
     switch (currentPage) {
@@ -84,26 +53,6 @@ const AppContent: React.FC = () => {
         </main>
       </div>
     </div>
-  );
-};
-
-function App() {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <AppContent />
-        <Toaster 
-          position="top-right"
-          toastOptions={{
-            duration: 4000,
-            style: {
-              background: '#363636',
-              color: '#fff',
-            },
-          }}
-        />
-      </AuthProvider>
-    </QueryClientProvider>
   );
 }
 
