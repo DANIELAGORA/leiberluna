@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from 'react-hot-toast';
-import { Scale } from 'lucide-react';
 import { AuthProvider, useAuthContext } from './components/auth/AuthProvider';
 import { LoginForm } from './components/auth/LoginForm';
 import Sidebar from './components/Sidebar';
